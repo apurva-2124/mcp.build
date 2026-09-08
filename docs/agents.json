@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "mcp.build",
-  "description": "Catalog of Hal9-style agents / open source MCPs in this repository.",
-  "homepage": "https://hal9ai.github.io/mcp.build/",
+  "description": "Catalog of hosted, open-source MCP (Model Context Protocol) servers for AI agents. Set up an MCP endpoint once and your agent can use them all.",
+  "homepage": "https://mcp.build",
   "repository": "https://github.com/hal9ai/mcp.build",
   "agent_instructions": [
     "https://github.com/hal9ai/mcp.build/blob/main/AGENTS.md",
-    "https://hal9ai.github.io/mcp.build/llms.txt"
+    "https://mcp.build/llms.txt"
   ],
   "agents": [
     {
       "id": "send-email",
       "name": "send-email",
       "connector_name": "Send Email",
-      "description": "Send emails from natural language prompts.",
+      "description": "Send emails from natural language prompts. No rigid schema — just tell your agent what to send and it figures out the rest.",
       "docs_path": "send-email/",
       "path": "send-email",
       "repo_path": "https://github.com/hal9ai/mcp.build/tree/main/send-email",

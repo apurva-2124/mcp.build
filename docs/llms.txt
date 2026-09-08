@@ -1,67 +1,49 @@
 # mcp.build
 
-> Community repository for open source MCPs (Model Context Protocol) that use the Hal9 open source agent structure: plain stdin/stdout agents (`input()` / `print()`) for easy deployment and interoperability.
+> Hosted, open-source MCP (Model Context Protocol) servers for AI agents.
+> Connect an endpoint once — your agent can take real action instantly, with nothing to deploy.
 
-Homepage: https://hal9ai.github.io/mcp.build/
+Homepage: https://mcp.build
 Repository: https://github.com/hal9ai/mcp.build
 Full agent rules: https://github.com/hal9ai/mcp.build/blob/main/AGENTS.md
-Catalog: https://hal9ai.github.io/mcp.build/agents.json
+Machine-readable catalog: https://mcp.build/agents.json
 
-## Audience
+## What mcp.build is
 
-This project is intentionally easy for coding agents (Claude Code, Grok Build, Cursor, Codex, etc.) to contribute to. Prefer small PRs that add one agent folder and its deploy workflow.
+mcp.build is a catalog of already-deployed MCP servers. Every server in the catalog:
+- Is live and reachable via a single HTTPS endpoint
+- Accepts natural-language prompts and translates them to the right tool calls
+- Is fully open source — inspect the code, self-host it, or contribute your own
+- Shares the same contract and setup flow, so adding a second MCP takes seconds
+
+Target audience: AI agent builders (Claude Code, Cursor, Codex, Grok Build, custom LLM agents) who want to add real-world capabilities without writing or hosting any infrastructure.
+
+## Audience for contributions
+
+Coding agents and developers who want to publish an MCP. Prefer small PRs that add one agent folder and its deploy workflow. See AGENTS.md for the full contract.
 
 ## Website structure
 
-The homepage (`docs/index.html`) explains what mcp.build is and lists available MCPs;
-it does not contain contribution instructions (those live in `README.md` / `AGENTS.md`).
-Each MCP has its own page at `docs/<id>/index.html`, served at `/<id>/`
-(e.g. `docs/send-email/index.html` → https://hal9ai.github.io/mcp.build/send-email/).
-Use `docs/send-email/index.html` as the template when adding a new one.
-General "how to connect an MCP" instructions (Add to Claude, Claude Code, other
-clients) live once at `docs/installing-mcps/index.html` — MCP pages link there
-instead of repeating the steps.
+- Homepage (`https://mcp.build/`) — catalog of available MCPs with copy-and-connect endpoints
+- Each MCP has a page at `https://mcp.build/<id>/` (e.g. `https://mcp.build/send-email/`)
+- Installing MCPs guide: `https://mcp.build/installing-mcps/`
+- Machine-readable catalog: `https://mcp.build/agents.json`
 
 ## Agent contract
 
 Every agent is a top-level directory with:
-
-- `app.py` — required. Read user text via `input()`, write result via `print()`. Do not require the `hal9` Python package unless you need session persistence helpers.
+- `app.py` — read user text via `input()`, write result via `print()`
 - `requirements.txt` — optional Python deps
 - `hal9.yaml` — optional (`welcome:` message)
 
-Deploy when the folder changes via `.github/workflows/<name>.yaml` using the same pattern as `send-email`:
-
-```yaml
-on:
-  push:
-    branches: [main]
-    paths:
-      - <name>/**
-      - .github/workflows/<name>.yaml
-# steps: setup-python, pip install hal9, checkout, changed-files, then:
-# hal9 deploy <name> --name <name> --access public --title "..." --description "..."
-# Secret: HAL9_TOKEN
-```
-
-After adding an agent:
-
-1. Append entry to `docs/agents.json`
-2. Mention it in root `README.md`
-3. Do not commit secrets or API keys
+Deploy when the folder changes via `.github/workflows/<name>.yaml`.
 
 ## Existing agents
 
-- send-email — path `send-email/` — Groq tool use + Resend email API. Example: `send email to javier@hal9.ai with text hello!`
-
-## Local test pattern
-
-```bash
-cd <agent>
-pip install -r requirements.txt
-# export required API keys
-echo "<prompt>" | python app.py
-```
+- **send-email** — `https://mcp.build/send-email/`
+  - Endpoint: `https://next.hal9.ai/mcp/mcpbuild/send-email`
+  - Example: `send email to javier@hal9.ai with text hello!`
+  - Built with: Groq (tool use) + Resend (email delivery)
 
 ## Do not
 
