@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>search-web MCP — search the web from natural language · mcp.build</title>
+  <meta name="description" content="A hosted, open-source MCP server that searches the web from natural language prompts. Returns titles, URLs, and summaries — no rigid schema required." />
+  <link rel="canonical" href="https://mcp.build/search-web/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcp.build/search-web/" />
+  <meta property="og:title" content="search-web MCP — search the web from natural language" />
+  <meta property="og:description" content="A hosted, open-source MCP server that searches the web from natural language prompts. Connect in seconds, no infra required." />
+  <meta property="og:site_name" content="mcp.build" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="search-web MCP — search the web from natural language" />
+  <meta name="twitter:description" content="A hosted, open-source MCP server that searches the web from natural language prompts. Connect in seconds, no infra required." />
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="alternate" type="text/plain" href="../llms.txt" title="LLM instructions" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://mcp.build/search-web/",
+    "name": "search-web MCP",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://mcp.build/search-web/",
+    "description": "A hosted, open-source MCP server that searches the web from natural language prompts. Returns titles, URLs, and AI-generated summaries.",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "provider": { "@type": "Organization", "name": "mcp.build", "url": "https://mcp.build" },
+    "codeRepository": "https://github.com/hal9ai/mcp.build/tree/main/search-web",
+    "featureList": [
+      "Search the web from natural language prompts",
+      "Returns titles, URLs, and AI-generated summaries",
+      "Hosted — no infrastructure to manage",
+      "Open source — inspect or self-host",
+      "Powered by Exa"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="logo" href="../">mcp<span>.</span>build</a>
+      <ul class="nav-links">
+        <li><a href="../#mcps">MCPs</a></li>
+        <li><a href="../installing-mcps/">Installing MCPs</a></li>
+        <li><a href="https://github.com/hal9ai/mcp.build">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div class="badge">MCP · search-web</div>
+      <h1>search-web</h1>
+      <p class="lead">Search the web from natural language prompts.</p>
+
+      <div class="endpoint">
+        <div>
+          <span class="endpoint-label">MCP endpoint</span>
+          <code>https://next.hal9.ai/mcp/mcpbuild/search-web</code>
+        </div>
+        <button class="endpoint-copy" data-copy="https://next.hal9.ai/mcp/mcpbuild/search-web">Copy</button>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Search%20Web&connectorUrl=https%3A%2F%2Fnext.hal9.ai%2Fmcp%2Fmcpbuild%2Fsearch-web">Add to Claude</a>
+        <a class="btn btn-ghost" href="https://github.com/hal9ai/mcp.build/tree/main/search-web">View source</a>
+      </div>
+      <p style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-dim);">
+        First time connecting an MCP? See <a href="../installing-mcps/">Installing MCPs</a> for setup steps.
+      </p>
+    </header>
+
+    <section id="what">
+      <h2>What it does</h2>
+      <p>
+        <strong>search-web</strong> turns a plain-language query into a real web search.
+        Pass any query and the MCP calls the <a href="https://exa.ai">Exa</a> search API,
+        then returns the top results — titles, URLs, and AI-generated summaries:
+      </p>
+      <div class="pre-wrap">
+        <pre>search for recent news about Model Context Protocol</pre>
+      </div>
+      <div class="pre-wrap">
+        <pre>what are the best open-source MCP servers available?</pre>
+      </div>
+    </section>
+
+    <section id="how-agents-use-it">
+      <h2>How agents use this MCP</h2>
+      <ol class="steps">
+        <li><div><strong>Receive the query</strong><span>e.g. "find documentation for the MCP Python SDK"</span></div></li>
+        <li><div><strong>Search with Exa</strong><span>Neural search returns the top 5 most relevant pages with summaries</span></div></li>
+        <li><div><strong>Return formatted results</strong><span>Titles, URLs, and summaries ready for the agent to reason over</span></div></li>
+      </ol>
+    </section>
+
+    <section id="config">
+      <h2>Self-host or run locally</h2>
+      <div class="pre-wrap">
+        <pre>cd search-web
+pip install -r requirements.txt
+export EXA_API_KEY=…
+echo "search for MCP Python SDK" | python app.py</pre>
+      </div>
+      <table class="meta">
+        <thead><tr><th>Variable</th><th>Required</th></tr></thead>
+        <tbody>
+          <tr><td>EXA_API_KEY</td><td>Yes — get one free at <a href="https://exa.ai">exa.ai</a></td></tr>
+          <tr><td>SEARCH_NUM_RESULTS</td><td>No — defaults to 5</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.875rem;">
+        Full source: <a href="https://github.com/hal9ai/mcp.build/tree/main/search-web">github.com/hal9ai/mcp.build/tree/main/search-web</a>
+      </p>
+    </section>
+
+    <div class="callout">
+      <p>
+        <strong>Connecting from Claude, Claude Code, Cursor, or another MCP client?</strong>
+        Point it at the endpoint above — full setup instructions on the
+        <a href="../installing-mcps/">Installing MCPs</a> page.
+      </p>
+    </div>
+
+    <footer class="footer">
+      <span>mcp.build · open source MCPs for AI agents</span>
+      <span>
+        <a href="../">All MCPs</a>
+        · <a href="../installing-mcps/">Installing MCPs</a>
+        · <a href="https://github.com/hal9ai/mcp.build">GitHub</a>
+        · <a href="../llms.txt">llms.txt</a>
+      </span>
+    </footer>
+  </div>
+  <script src="../js/copy.js"></script>
+</body>
+</html>
