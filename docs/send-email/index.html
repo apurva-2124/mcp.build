@@ -3,8 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>send-email — mcp.build</title>
-  <meta name="description" content="Send emails from natural language prompts. A ready-to-use MCP from mcp.build." />
+  <title>send-email MCP — send emails from natural language · mcp.build</title>
+  <meta name="description" content="A hosted, open-source MCP server that turns plain-language requests into real emails. No SMTP config, no rigid schema — just tell your agent what to send." />
+  <link rel="canonical" href="https://mcp.build/send-email/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcp.build/send-email/" />
+  <meta property="og:title" content="send-email MCP — send emails from natural language" />
+  <meta property="og:description" content="A hosted, open-source MCP server that turns plain-language requests into real emails. No SMTP config, no rigid schema — connect in seconds." />
+  <meta property="og:site_name" content="mcp.build" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="send-email MCP — send emails from natural language" />
+  <meta name="twitter:description" content="A hosted, open-source MCP server that turns plain-language requests into real emails. No SMTP config, no rigid schema — connect in seconds." />
+
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -13,6 +27,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="alternate" type="text/plain" href="../llms.txt" title="LLM instructions" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://mcp.build/send-email/",
+    "name": "send-email MCP",
+    "alternateName": "Send Email MCP",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://mcp.build/send-email/",
+    "description": "A hosted, open-source Model Context Protocol (MCP) server that turns plain-language requests into real emails. No SMTP configuration, no rigid schema — connect an endpoint and your AI agent can send email instantly.",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "mcp.build",
+      "url": "https://mcp.build"
+    },
+    "codeRepository": "https://github.com/hal9ai/mcp.build/tree/main/send-email",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "AI agent builders, LLM developers, automation engineers"
+    },
+    "featureList": [
+      "Send emails from natural language prompts",
+      "Hosted — no infrastructure to manage",
+      "Open source — inspect or self-host",
+      "Works with Claude, Claude Code, Cursor, Codex, and any MCP-compatible agent"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
