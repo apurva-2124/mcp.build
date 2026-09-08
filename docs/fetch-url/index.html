@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fetch-url MCP — fetch and read any webpage · mcp.build</title>
+  <meta name="description" content="A hosted, open-source MCP server that fetches any URL and returns its plain-text content. No API key required — just connect and go." />
+  <link rel="canonical" href="https://mcp.build/fetch-url/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcp.build/fetch-url/" />
+  <meta property="og:title" content="fetch-url MCP — fetch and read any webpage" />
+  <meta property="og:description" content="A hosted, open-source MCP server that fetches any URL and returns its plain-text content. No API key required." />
+  <meta property="og:site_name" content="mcp.build" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="fetch-url MCP — fetch and read any webpage" />
+  <meta name="twitter:description" content="A hosted, open-source MCP server that fetches any URL and returns its plain-text content. No API key required." />
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="alternate" type="text/plain" href="../llms.txt" title="LLM instructions" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://mcp.build/fetch-url/",
+    "name": "fetch-url MCP",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://mcp.build/fetch-url/",
+    "description": "A hosted, open-source Model Context Protocol (MCP) server that fetches any URL and returns its plain-text content. No API key required.",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "provider": { "@type": "Organization", "name": "mcp.build", "url": "https://mcp.build" },
+    "codeRepository": "https://github.com/hal9ai/mcp.build/tree/main/fetch-url",
+    "featureList": [
+      "Fetch any URL and return clean plain text",
+      "No API key required",
+      "Strips navigation, scripts, and boilerplate automatically",
+      "Hosted — no infrastructure to manage",
+      "Open source — inspect or self-host"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="logo" href="../">mcp<span>.</span>build</a>
+      <ul class="nav-links">
+        <li><a href="../#mcps">MCPs</a></li>
+        <li><a href="../installing-mcps/">Installing MCPs</a></li>
+        <li><a href="https://github.com/hal9ai/mcp.build">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div class="badge">MCP · fetch-url</div>
+      <h1>fetch-url</h1>
+      <p class="lead">Fetch and read any webpage from a natural language prompt.</p>
+
+      <div class="endpoint">
+        <div>
+          <span class="endpoint-label">MCP endpoint</span>
+          <code>https://next.hal9.ai/mcp/mcpbuild/fetch-url</code>
+        </div>
+        <button class="endpoint-copy" data-copy="https://next.hal9.ai/mcp/mcpbuild/fetch-url">Copy</button>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Fetch%20URL&connectorUrl=https%3A%2F%2Fnext.hal9.ai%2Fmcp%2Fmcpbuild%2Ffetch-url">Add to Claude</a>
+        <a class="btn btn-ghost" href="https://github.com/hal9ai/mcp.build/tree/main/fetch-url">View source</a>
+      </div>
+      <p style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-dim);">
+        First time connecting an MCP? See <a href="../installing-mcps/">Installing MCPs</a> for setup steps.
+      </p>
+    </header>
+
+    <section id="what">
+      <h2>What it does</h2>
+      <p>
+        <strong>fetch-url</strong> reads any webpage and returns its content as clean plain text.
+        Scripts, navigation, and boilerplate are stripped automatically, leaving just the content
+        your agent needs. No API key required — connect the endpoint and it works immediately:
+      </p>
+      <div class="pre-wrap">
+        <pre>fetch https://modelcontextprotocol.io</pre>
+      </div>
+      <div class="pre-wrap">
+        <pre>read the content at https://docs.anthropic.com/mcp</pre>
+      </div>
+    </section>
+
+    <section id="how-agents-use-it">
+      <h2>How agents use this MCP</h2>
+      <ol class="steps">
+        <li><div><strong>Receive a URL</strong><span>e.g. "read https://example.com/docs/api-reference"</span></div></li>
+        <li><div><strong>Fetch the page</strong><span>HTTP GET with a standard User-Agent, follows redirects</span></div></li>
+        <li><div><strong>Strip and return</strong><span>Removes scripts, styles, nav, and footer; returns clean paragraph text</span></div></li>
+      </ol>
+      <p>
+        Typical uses: letting an agent read documentation, check a page before recommending it,
+        or extract information from a public web page without leaving the conversation.
+      </p>
+    </section>
+
+    <section id="config">
+      <h2>Self-host or run locally</h2>
+      <div class="pre-wrap">
+        <pre>cd fetch-url
+pip install -r requirements.txt
+echo "fetch https://modelcontextprotocol.io" | python app.py</pre>
+      </div>
+      <table class="meta">
+        <thead><tr><th>Variable</th><th>Required</th></tr></thead>
+        <tbody>
+          <tr><td>FETCH_MAX_CHARS</td><td>No — defaults to 4000</td></tr>
+          <tr><td>FETCH_TIMEOUT</td><td>No — defaults to 15 seconds</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.875rem;">
+        Full source: <a href="https://github.com/hal9ai/mcp.build/tree/main/fetch-url">github.com/hal9ai/mcp.build/tree/main/fetch-url</a>
+      </p>
+    </section>
+
+    <div class="callout">
+      <p>
+        <strong>Connecting from Claude, Claude Code, Cursor, or another MCP client?</strong>
+        Point it at the endpoint above — full setup instructions on the
+        <a href="../installing-mcps/">Installing MCPs</a> page.
+      </p>
+    </div>
+
+    <footer class="footer">
+      <span>mcp.build · open source MCPs for AI agents</span>
+      <span>
+        <a href="../">All MCPs</a>
+        · <a href="../installing-mcps/">Installing MCPs</a>
+        · <a href="https://github.com/hal9ai/mcp.build">GitHub</a>
+        · <a href="../llms.txt">llms.txt</a>
+      </span>
+    </footer>
+  </div>
+  <script src="../js/copy.js"></script>
+</body>
+</html>
