@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>mcp.build — connect AI agents to the real world, instantly</title>
   <meta name="description" content="mcp.build hosts open-source MCP servers so your agent can take real action — send emails, call APIs, and more — with nothing to deploy and nothing to configure." />
+  <link rel="canonical" href="https://mcp.build/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcp.build/" />
+  <meta property="og:title" content="mcp.build — connect AI agents to the real world, instantly" />
+  <meta property="og:description" content="Hosted, open-source MCP servers for AI agents. Copy an endpoint, connect it in seconds — no infra, no config." />
+  <meta property="og:site_name" content="mcp.build" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="mcp.build — connect AI agents to the real world, instantly" />
+  <meta name="twitter:description" content="Hosted, open-source MCP servers for AI agents. Copy an endpoint, connect it in seconds — no infra, no config." />
+
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -13,6 +27,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="alternate" type="text/plain" href="llms.txt" title="LLM instructions" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mcp.build/#website",
+        "url": "https://mcp.build",
+        "name": "mcp.build",
+        "description": "Hosted, open-source MCP (Model Context Protocol) servers for AI agents. Connect capabilities without running infrastructure.",
+        "publisher": {
+          "@id": "https://mcp.build/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://mcp.build/#organization",
+        "name": "mcp.build",
+        "url": "https://mcp.build",
+        "sameAs": [
+          "https://github.com/hal9ai/mcp.build"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://mcp.build/#catalog",
+        "name": "mcp.build MCP Catalog",
+        "applicationCategory": "DeveloperApplication",
+        "url": "https://mcp.build",
+        "description": "A catalog of hosted, open-source Model Context Protocol (MCP) servers. AI agents connect to them instantly — no infrastructure, no configuration. Set up one MCP endpoint and you can access every MCP in the catalog.",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "AI agent builders, LLM developers, automation engineers"
+        },
+        "isAccessibleForFree": true,
+        "codeRepository": "https://github.com/hal9ai/mcp.build",
+        "provider": {
+          "@id": "https://mcp.build/#organization"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://mcp.build/#mcplist",
+        "name": "Available MCPs on mcp.build",
+        "url": "https://mcp.build/#mcps",
+        "numberOfItems": 1,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "@id": "https://mcp.build/send-email/",
+              "name": "send-email MCP",
+              "url": "https://mcp.build/send-email/",
+              "description": "Send emails from natural language prompts. A hosted, open-source MCP server for AI agents.",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Any",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
