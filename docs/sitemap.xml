@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mcp.build/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://mcp.build/send-email/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://mcp.build/installing-mcps/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <url><loc>https://mcp.build/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://mcp.build/send-email/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mcp.build/search-web/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mcp.build/fetch-url/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://mcp.build/installing-mcps/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
