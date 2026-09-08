@@ -45,6 +45,11 @@ Deploy when the folder changes via `.github/workflows/<name>.yaml`.
   - Example: `send email to javier@hal9.ai with text hello!`
   - Built with: Groq (tool use) + Resend (email delivery)
 
+- **run-python** — `https://mcp.build/run-python/`
+  - Endpoint: `https://next.hal9.ai/mcp/mcpbuild/run-python`
+  - Example: `install a package that calculates space orbits and compute the Hohmann transfer time from Earth to Mars and back, departing 2026-09-08`
+  - Built with: Groq (tool use) + sandboxed Python + pip install
+
 ## Do not
 
 - Add heavy app frameworks (Flask/FastAPI) for simple tool agents

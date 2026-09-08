@@ -1,0 +1,67 @@
+name: Publish run-python to MCP Registry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - run-python/**
+      - .github/workflows/publish-run-python.yaml
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install mcp-publisher
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          chmod +x mcp-publisher
+
+      - name: Read version from run-python/server.json
+        run: |
+          VERSION="$(jq -r '.version' run-python/server.json)"
+          if [[ -z "${VERSION}" || "${VERSION}" == "null" ]]; then
+            echo "Could not read version from run-python/server.json" >&2
+            exit 1
+          fi
+          echo "Using version ${VERSION} from run-python/server.json"
+          echo "VERSION=${VERSION}" >> "${GITHUB_ENV}"
+
+      - name: Validate server.json
+        run: ./mcp-publisher validate run-python/server.json
+
+      - name: Skip if this version is already published
+        id: existing
+        run: |
+          NAME="$(jq -r '.name' run-python/server.json)"
+          ENCODED_NAME="$(jq -nr --arg n "${NAME}" '$n|@uri')"
+          curl -fsS "https://registry.modelcontextprotocol.io/v0.1/servers?search=${ENCODED_NAME}" -o /tmp/registry.json
+          if jq -e --arg n "${NAME}" --arg v "${VERSION}" '
+              .servers[]? | select(.server.name == $n and .server.version == $v)
+            ' /tmp/registry.json >/dev/null; then
+            echo "already=true" >> "${GITHUB_OUTPUT}"
+            echo "io.github.hal9ai/run-python ${VERSION} is already in the registry — skipping publish"
+          else
+            echo "already=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Authenticate to MCP Registry
+        if: steps.existing.outputs.already != 'true'
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish run-python to MCP Registry
+        if: steps.existing.outputs.already != 'true'
+        run: ./mcp-publisher publish run-python/server.json
+
+      - name: Verify publication
+        if: steps.existing.outputs.already != 'true'
+        run: |
+          echo "Looking up io.github.hal9ai/run-python ${VERSION} in the registry..."
+          curl -fsS "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.hal9ai/run-python"
