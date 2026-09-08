@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "mcp.build",
-  "description": "Catalog of hosted, open-source MCP (Model Context Protocol) servers for AI agents. Set up an MCP endpoint once and your agent can use them all.",
+  "description": "Catalog of hosted, open-source MCP servers for AI agents.",
   "homepage": "https://mcp.build",
   "repository": "https://github.com/hal9ai/mcp.build",
   "agent_instructions": [
@@ -13,7 +13,7 @@
       "id": "send-email",
       "name": "send-email",
       "connector_name": "Send Email",
-      "description": "Send emails from natural language prompts. No rigid schema — just tell your agent what to send and it figures out the rest.",
+      "description": "Send emails from natural language prompts.",
       "docs_path": "send-email/",
       "path": "send-email",
       "repo_path": "https://github.com/hal9ai/mcp.build/tree/main/send-email",
@@ -21,15 +21,87 @@
       "runtime": "python",
       "io": "stdin/stdout",
       "endpoint": "https://next.hal9.ai/mcp/mcpbuild/send-email",
-      "dependencies": ["groq", "resend"],
+      "dependencies": [
+        "groq",
+        "resend"
+      ],
       "env": [
-        { "name": "GROQ_API_KEY", "required": true },
-        { "name": "RESEND_API_KEY", "required": true },
-        { "name": "RESEND_FROM", "required": false },
-        { "name": "GROQ_MODEL", "required": false }
+        {
+          "name": "GROQ_API_KEY",
+          "required": true
+        },
+        {
+          "name": "RESEND_API_KEY",
+          "required": true
+        },
+        {
+          "name": "RESEND_FROM",
+          "required": false
+        },
+        {
+          "name": "GROQ_MODEL",
+          "required": false
+        }
       ],
       "workflow": ".github/workflows/send-email.yaml",
       "example_prompt": "send email to javier@hal9.ai with text hello!"
+    },
+    {
+      "id": "search-web",
+      "name": "search-web",
+      "connector_name": "Search Web",
+      "description": "Search the web from natural language prompts. Returns titles, URLs, and summaries for the top results.",
+      "docs_path": "search-web/",
+      "path": "search-web",
+      "repo_path": "https://github.com/hal9ai/mcp.build/tree/main/search-web",
+      "entry": "search-web/app.py",
+      "runtime": "python",
+      "io": "stdin/stdout",
+      "endpoint": "https://next.hal9.ai/mcp/mcpbuild/search-web",
+      "dependencies": [
+        "requests"
+      ],
+      "env": [
+        {
+          "name": "EXA_API_KEY",
+          "required": true
+        },
+        {
+          "name": "SEARCH_NUM_RESULTS",
+          "required": false
+        }
+      ],
+      "workflow": ".github/workflows/search-web.yaml",
+      "example_prompt": "search for recent news about Model Context Protocol"
+    },
+    {
+      "id": "fetch-url",
+      "name": "fetch-url",
+      "connector_name": "Fetch URL",
+      "description": "Fetch and extract the plain-text content of any URL. No API key required.",
+      "docs_path": "fetch-url/",
+      "path": "fetch-url",
+      "repo_path": "https://github.com/hal9ai/mcp.build/tree/main/fetch-url",
+      "entry": "fetch-url/app.py",
+      "runtime": "python",
+      "io": "stdin/stdout",
+      "endpoint": "https://next.hal9.ai/mcp/mcpbuild/fetch-url",
+      "dependencies": [
+        "requests",
+        "beautifulsoup4"
+      ],
+      "env": [
+        {
+          "name": "FETCH_MAX_CHARS",
+          "required": false
+        },
+        {
+          "name": "FETCH_TIMEOUT",
+          "required": false
+        }
+      ],
+      "workflow": ".github/workflows/fetch-url.yaml",
+      "example_prompt": "fetch https://modelcontextprotocol.io"
     }
   ]
 }
