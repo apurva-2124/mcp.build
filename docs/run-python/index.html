@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>run-python MCP — run Python and install packages from natural language · mcp.build</title>
+  <meta name="description" content="A hosted, open-source MCP server that installs PyPI packages and runs Python from plain-language requests. Ask for an orbital calculation, a number, or a script — the MCP figures out the rest." />
+  <link rel="canonical" href="https://mcp.build/run-python/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mcp.build/run-python/" />
+  <meta property="og:title" content="run-python MCP — run Python and install packages from natural language" />
+  <meta property="og:description" content="A hosted, open-source MCP server that installs PyPI packages and runs Python from plain-language requests — connect in seconds." />
+  <meta property="og:site_name" content="mcp.build" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="run-python MCP — run Python and install packages from natural language" />
+  <meta name="twitter:description" content="A hosted, open-source MCP server that installs PyPI packages and runs Python from plain-language requests — connect in seconds." />
+
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="alternate" type="text/plain" href="../llms.txt" title="LLM instructions" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://mcp.build/run-python/",
+    "name": "run-python MCP",
+    "alternateName": "Run Python MCP",
+    "applicationCategory": "DeveloperApplication",
+    "url": "https://mcp.build/run-python/",
+    "description": "A hosted, open-source Model Context Protocol (MCP) server that installs PyPI packages and runs Python from plain-language requests. Connect an endpoint and your AI agent can compute, install libraries, and return results instantly.",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "mcp.build",
+      "url": "https://mcp.build"
+    },
+    "codeRepository": "https://github.com/hal9ai/mcp.build/tree/main/run-python",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "AI agent builders, LLM developers, automation engineers"
+    },
+    "featureList": [
+      "Run Python from natural language prompts",
+      "Install PyPI packages on demand",
+      "Hosted — no infrastructure to manage",
+      "Open source — inspect or self-host",
+      "Works with Claude, Claude Code, Cursor, Codex, and any MCP-compatible agent"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="logo" href="../">mcp<span>.</span>build</a>
+      <ul class="nav-links">
+        <li><a href="../#mcps">MCPs</a></li>
+        <li><a href="../installing-mcps/">Installing MCPs</a></li>
+        <li><a href="https://github.com/hal9ai/mcp.build">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div class="badge">MCP · run-python</div>
+      <h1>run-python</h1>
+      <p class="lead">Run Python and install packages from natural language prompts.</p>
+
+      <div class="endpoint">
+        <div>
+          <span class="endpoint-label">MCP endpoint</span>
+          <code>https://next.hal9.ai/mcp/mcpbuild/run-python</code>
+        </div>
+        <button class="endpoint-copy" data-copy="https://next.hal9.ai/mcp/mcpbuild/run-python">Copy</button>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Run%20Python&connectorUrl=https%3A%2F%2Fnext.hal9.ai%2Fmcp%2Fmcpbuild%2Frun-python">Add to Claude</a>
+        <a class="btn btn-ghost" href="https://next.hal9.ai/mcpbuild/run-python">Try now</a>
+        <a class="btn btn-ghost" href="https://github.com/hal9ai/mcp.build/tree/main/run-python">View source</a>
+      </div>
+      <p style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-dim);">
+        First time connecting an MCP? See
+        <a href="../installing-mcps/">Installing MCPs</a>
+        for setup steps in Claude, Claude Code, and other clients.
+      </p>
+    </header>
+
+    <section id="what">
+      <h2>What it does</h2>
+      <p>
+        <strong>run-python</strong> turns a plain-language request into real Python.
+        Instead of shipping a script or a rigid schema, an agent (or a human) describes
+        the calculation — including which libraries to install — and the MCP writes,
+        installs, and runs the code:
+      </p>
+      <div class="pre-wrap">
+        <pre>install a package that calculates space orbits and compute the Hohmann transfer time from Earth to Mars and back, departing 2026-09-08</pre>
+      </div>
+      <p>
+        Under the hood, the prompt is passed to a language model with two tools:
+        <code>install_packages</code> and <code>run_python</code>. The model picks
+        PyPI packages (for example <code>skyfield</code>, <code>astropy</code>, or
+        <code>poliastro</code>), installs them into a sandbox, executes Python, and
+        returns the printed result.
+      </p>
+    </section>
+
+    <section id="how-agents-use-it">
+      <h2>How agents use this MCP</h2>
+      <p>
+        Once connected, an agent can just ask in plain English. The MCP exposes two
+        tools:
+      </p>
+      <table class="meta">
+        <thead>
+          <tr><th>Tool</th><th>Parameter</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>install_packages</td><td>packages</td><td>List of PyPI names, optionally with extras or version pins</td></tr>
+          <tr><td>run_python</td><td>code</td><td>Python source to execute; results must be printed to stdout</td></tr>
+        </tbody>
+      </table>
+      <p>The agent doesn't need to call the tools directly with structured arguments — it can just be asked in plain English, and it will:</p>
+      <ol class="steps">
+        <li><div><strong>Read the request</strong><span>e.g. "install an orbital-mechanics package and time a round trip to Mars departing today"</span></div></li>
+        <li><div><strong>Install what is needed</strong><span>Calls <code>install_packages</code> for PyPI libraries the code will import</span></div></li>
+        <li><div><strong>Run Python</strong><span>Writes a short program, executes it in a sandbox, and returns stdout (and stderr on failure)</span></div></li>
+      </ol>
+      <p>
+        Typical uses: science and engineering calculations that need a library you
+        don't have locally, quick numeric checks, or letting an agent install a
+        package and compute something in one prompt.
+      </p>
+    </section>
+
+    <section id="config">
+      <h2>Self-host or run locally</h2>
+      <p>
+        run-python is open source and built on the <a href="https://github.com/hal9ai/hal9">Hal9</a>
+        agent structure. You can run it yourself instead of using the hosted version:
+      </p>
+      <div class="pre-wrap">
+        <pre>cd run-python
+pip install -r requirements.txt
+export GROQ_API_KEY=…
+echo "print the first 10 primes" | python app.py</pre>
+      </div>
+      <table class="meta">
+        <thead>
+          <tr><th>Variable</th><th>Required</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GROQ_API_KEY</td><td>Yes</td></tr>
+          <tr><td>GROQ_MODEL</td><td>No — defaults to qwen/qwen3.6-27b</td></tr>
+          <tr><td>PYTHON_TIMEOUT</td><td>No — seconds allowed for each run (default 60)</td></tr>
+          <tr><td>PIP_TIMEOUT</td><td>No — seconds allowed for pip install (default 180)</td></tr>
+          <tr><td>PACKAGES_DIR</td><td>No — directory for installed packages</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.875rem;">
+        Code runs in a subprocess with a timeout. API keys and deploy tokens are not
+        passed into the sandbox. Full source, deploy workflow, and contributing guide:
+        <a href="https://github.com/hal9ai/mcp.build/tree/main/run-python">github.com/hal9ai/mcp.build/tree/main/run-python</a>
+      </p>
+    </section>
+
+    <div class="callout">
+      <p>
+        <strong>Connecting from Claude, Claude Code, Cursor, or another MCP client?</strong>
+        Point it at the endpoint above — full step-by-step instructions live on the
+        <a href="../installing-mcps/">Installing MCPs</a> page.
+      </p>
+    </div>
+
+    <footer class="footer">
+      <span>mcp.build · open source MCPs for AI agents</span>
+      <span>
+        <a href="../">All MCPs</a>
+        ·
+        <a href="../installing-mcps/">Installing MCPs</a>
+        ·
+        <a href="https://github.com/hal9ai/mcp.build">GitHub</a>
+        ·
+        <a href="../llms.txt">llms.txt</a>
+      </span>
+    </footer>
+  </div>
+
+  <script src="../js/copy.js"></script>
+</body>
+</html>

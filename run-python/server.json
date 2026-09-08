@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.hal9ai/run-python",
+  "title": "Run Python",
+  "description": "Run Python code from natural language prompts, with optional PyPI package install.",
+  "version": "0.0.1",
+  "websiteUrl": "https://mcp.build/run-python/",
+  "repository": {
+    "url": "https://github.com/hal9ai/mcp.build",
+    "source": "github",
+    "id": "1327233276",
+    "subfolder": "run-python"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://next.hal9.ai/mcp/mcpbuild/run-python"
+    }
+  ]
+}

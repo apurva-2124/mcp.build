@@ -1,0 +1,50 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - url: https://api.devel.hal9.com
+            token: HAL9_DEVEL_TOKEN
+          - url: https://next.hal9.ai
+            token: HAL9_NEXT_TOKEN
+    steps:
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Hal9
+        run: pip install hal9
+
+      - uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v47
+        with:
+          since_last_remote_commit: true
+
+      - name: Deploy run-python
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+          HAL9_TOKEN: ${{ secrets[matrix.token] }}
+        run: |
+          if echo "${ALL_CHANGED_FILES}" | grep -qE "run-python/|\.github/workflows/run-python\.yaml"; then
+            echo "run-python (or its workflow) changed — deploying to ${{ matrix.url }}"
+            hal9 deploy run-python \
+              --name run-python \
+              --url ${{ matrix.url }} \
+              --access public \
+              --title "Run Python" \
+              --description "Run Python code from natural language prompts, with optional PyPI package install"
+          else
+            echo "No deployable run-python changes"
+          fi

@@ -47,6 +47,29 @@
       "example_prompt": "send email to javier@hal9.ai with text hello!"
     },
     {
+      "id": "run-python",
+      "name": "run-python",
+      "connector_name": "Run Python",
+      "description": "Run Python from natural language prompts, with optional PyPI package install. Ask it to install an orbital-mechanics library and compute a transfer to Mars — it writes and runs the code.",
+      "docs_path": "run-python/",
+      "path": "run-python",
+      "repo_path": "https://github.com/hal9ai/mcp.build/tree/main/run-python",
+      "entry": "run-python/app.py",
+      "runtime": "python",
+      "io": "stdin/stdout",
+      "endpoint": "https://next.hal9.ai/mcp/mcpbuild/run-python",
+      "dependencies": ["groq"],
+      "env": [
+        { "name": "GROQ_API_KEY", "required": true },
+        { "name": "GROQ_MODEL", "required": false },
+        { "name": "PYTHON_TIMEOUT", "required": false },
+        { "name": "PIP_TIMEOUT", "required": false },
+        { "name": "PACKAGES_DIR", "required": false }
+      ],
+      "workflow": ".github/workflows/run-python.yaml",
+      "example_prompt": "install a package that calculates space orbits and compute the Hohmann transfer time from Earth to Mars and back, departing 2026-09-08"
+    },
+    {
       "id": "search-web",
       "name": "search-web",
       "connector_name": "Search Web",

@@ -8,6 +8,56 @@ Catalog: https://mcp.build/agents.json
 
 ## Agents
 
-- **send-email** — https://mcp.build/send-email/ | https://next.hal9.ai/mcp/mcpbuild/send-email | Env: GROQ_API_KEY, RESEND_API_KEY
-- **search-web** — https://mcp.build/search-web/ | https://next.hal9.ai/mcp/mcpbuild/search-web | Env: EXA_API_KEY
-- **fetch-url** — https://mcp.build/fetch-url/ | https://next.hal9.ai/mcp/mcpbuild/fetch-url | Env: none
+mcp.build is a catalog of already-deployed MCP servers. Every server in the catalog:
+- Is live and reachable via a single HTTPS endpoint
+- Accepts natural-language prompts and translates them to the right tool calls
+- Is fully open source — inspect the code, self-host it, or contribute your own
+- Shares the same contract and setup flow, so adding a second MCP takes seconds
+
+Target audience: AI agent builders (Claude Code, Cursor, Codex, Grok Build, custom LLM agents) who want to add real-world capabilities without writing or hosting any infrastructure.
+
+## Audience for contributions
+
+Coding agents and developers who want to publish an MCP. Prefer small PRs that add one agent folder and its deploy workflow. See AGENTS.md for the full contract.
+
+## Website structure
+
+- Homepage (`https://mcp.build/`) — catalog of available MCPs with copy-and-connect endpoints
+- Each MCP has a page at `https://mcp.build/<id>/` (e.g. `https://mcp.build/send-email/`)
+- Installing MCPs guide: `https://mcp.build/installing-mcps/`
+- Machine-readable catalog: `https://mcp.build/agents.json`
+
+## Agent contract
+
+Every agent is a top-level directory with:
+- `app.py` — read user text via `input()`, write result via `print()`
+- `requirements.txt` — optional Python deps
+- `hal9.yaml` — optional (`welcome:` message)
+
+Deploy when the folder changes via `.github/workflows/<name>.yaml`.
+
+## Existing agents
+
+- **send-email** — `https://mcp.build/send-email/`
+  - Endpoint: `https://next.hal9.ai/mcp/mcpbuild/send-email`
+  - Example: `send email to javier@hal9.ai with text hello!`
+  - Built with: Groq (tool use) + Resend (email delivery)
+
+- **run-python** — `https://mcp.build/run-python/`
+  - Endpoint: `https://next.hal9.ai/mcp/mcpbuild/run-python`
+  - Example: `install a package that calculates space orbits and compute the Hohmann transfer time from Earth to Mars and back, departing 2026-09-08`
+  - Built with: Groq (tool use) + sandboxed Python + pip install
+
+- **search-web** — https://mcp.build/search-web/
+  - Endpoint: https://next.hal9.ai/mcp/mcpbuild/search-web
+  
+- **fetch-url** — https://mcp.build/fetch-url/
+  - Endpoint: https://next.hal9.ai/mcp/mcpbuild/fetch-url
+
+## Do not
+
+- Add heavy app frameworks (Flask/FastAPI) for simple tool agents
+- Put multiple unrelated tools in one folder
+- Change unrelated agents in the same PR unless required
+- Commit `.env`, keys, or `__pycache__`
+

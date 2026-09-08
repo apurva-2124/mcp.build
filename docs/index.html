@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>mcp.build — connect AI agents to the real world, instantly</title>
-  <meta name="description" content="mcp.build hosts open-source MCP servers so your agent can take real action — send emails, call APIs, and more — with nothing to deploy and nothing to configure." />
+  <meta name="description" content="mcp.build hosts open-source MCP servers so your agent can take real action — send emails, run Python, and more — with nothing to deploy and nothing to configure." />
   <link rel="canonical" href="https://mcp.build/" />
 
   <!-- Open Graph -->
@@ -81,7 +81,7 @@
         "@id": "https://mcp.build/#mcplist",
         "name": "Available MCPs on mcp.build",
         "url": "https://mcp.build/#mcps",
-        "numberOfItems": 1,
+        "numberOfItems": 2,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -92,6 +92,20 @@
               "name": "send-email MCP",
               "url": "https://mcp.build/send-email/",
               "description": "Send emails from natural language prompts. A hosted, open-source MCP server for AI agents.",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Any",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "@id": "https://mcp.build/run-python/",
+              "name": "run-python MCP",
+              "url": "https://mcp.build/run-python/",
+              "description": "Run Python and install PyPI packages from natural language prompts. A hosted, open-source MCP server for AI agents.",
               "applicationCategory": "DeveloperApplication",
               "operatingSystem": "Any",
               "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -119,7 +133,7 @@
       <h1>Connect AI agents to the real world — instantly.</h1>
       <p class="lead">
         mcp.build hosts open-source <a href="https://modelcontextprotocol.io">MCP servers</a>
-        so your agent can take real action — send emails, call APIs, and more —
+        so your agent can take real action — send emails, run Python, and more —
         with nothing to deploy and nothing to configure. Copy an endpoint,
         connect it in seconds, and give your agent new superpowers.
       </p>
@@ -164,6 +178,22 @@
           </div>
           <div class="card-actions">
             <a class="btn btn-primary btn-sm" href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Send%20Email&connectorUrl=https%3A%2F%2Fnext.hal9.ai%2Fmcp%2Fmcpbuild%2Fsend-email">Add to Claude</a>
+          </div>
+        </div>
+        <div class="card card-clickable" data-href="run-python/">
+          <div class="card-top">
+            <h3><a href="run-python/">run-python</a></h3>
+          </div>
+          <p>Run Python and install packages from natural language prompts.</p>
+          <div class="endpoint endpoint-sm">
+            <div>
+              <span class="endpoint-label">MCP endpoint</span>
+              <code>https://next.hal9.ai/mcp/mcpbuild/run-python</code>
+            </div>
+            <button class="endpoint-copy" data-copy="https://next.hal9.ai/mcp/mcpbuild/run-python">Copy</button>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary btn-sm" href="https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Run%20Python&connectorUrl=https%3A%2F%2Fnext.hal9.ai%2Fmcp%2Fmcpbuild%2Frun-python">Add to Claude</a>
           </div>
         </div>
       </div>

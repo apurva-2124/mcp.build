@@ -19,6 +19,7 @@ Hal9 agents are intentionally simple: read from stdin with `input()`, write to s
 | Agent | Description | Path |
 | --- | --- | --- |
 | **send-email** | Send emails with [Resend](https://resend.com) from natural language prompts (Groq tool use) | [`send-email/`](./send-email) |
+| **run-python** | Run Python and install PyPI packages from natural language prompts (Groq tool use) | [`run-python/`](./run-python) |
 
 ### send-email
 
@@ -69,6 +70,56 @@ On push to `main`, if files under `send-email/` change, [`.github/workflows/send
 
 The hosted send-email MCP is published as a remote-only server to the [official MCP Registry](https://registry.modelcontextprotocol.io) under `io.github.hal9ai/send-email`. Metadata lives in [`send-email/server.json`](./send-email/server.json). On push to `main` (when `send-email/` changes), [`.github/workflows/publish-send-email.yaml`](./.github/workflows/publish-send-email.yaml) publishes it using GitHub OIDC — **no extra GitHub secrets**. The registry version is `version` in that file. If it is already published, the job skips. Bump `version` there to ship a new registry entry.
 
+### run-python
+
+Example prompt:
+
+```text
+install a package that calculates space orbits and compute the Hohmann transfer time from Earth to Mars and back, departing 2026-09-08
+```
+
+The agent:
+
+1. Reads the prompt via `input()`
+2. Calls a Groq model with `install_packages` and `run_python` tool definitions
+3. Installs requested PyPI packages into a sandbox directory
+4. Executes the generated Python in a subprocess and captures stdout/stderr
+5. Prints the result via `print()`
+
+**Environment variables**
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `GROQ_API_KEY` | Yes | API key from [console.groq.com](https://console.groq.com) |
+| `GROQ_MODEL` | No | Model id (default: `qwen/qwen3.6-27b`) |
+| `PYTHON_TIMEOUT` | No | Seconds allowed for each Python run (default: `60`) |
+| `PIP_TIMEOUT` | No | Seconds allowed for pip install (default: `180`) |
+| `PACKAGES_DIR` | No | Directory for installed packages (default: a temp dir) |
+
+**Local run**
+
+```bash
+cd run-python
+pip install -r requirements.txt
+export GROQ_API_KEY=...
+echo "print the first 10 primes" | python app.py
+```
+
+**Deploy to Hal9**
+
+```bash
+export HAL9_TOKEN=...   # from https://hal9.com/devs
+hal9 deploy run-python --name run-python --access public \
+  --title "Run Python" \
+  --description "Run Python code from natural language prompts, with optional PyPI package install"
+```
+
+On push to `main`, if files under `run-python/` change, [`.github/workflows/run-python.yaml`](./.github/workflows/run-python.yaml) deploys a new version to Hal9. Set the `HAL9_DEVEL_TOKEN` / `HAL9_NEXT_TOKEN` repository secrets in GitHub Actions.
+
+**Publish to the MCP Registry**
+
+The hosted run-python MCP is published as a remote-only server to the [official MCP Registry](https://registry.modelcontextprotocol.io) under `io.github.hal9ai/run-python`. Metadata lives in [`run-python/server.json`](./run-python/server.json). On push to `main` (when `run-python/` changes), [`.github/workflows/publish-run-python.yaml`](./.github/workflows/publish-run-python.yaml) publishes it using GitHub OIDC. Bump `version` in `server.json` to ship a new registry entry.
+
 ## Website (GitHub Pages)
 
 Static site lives in [`docs/`](./docs) — no build step.
@@ -77,6 +128,7 @@ Static site lives in [`docs/`](./docs) — no build step.
 | --- | --- |
 | [`docs/index.html`](./docs/index.html) | Landing page — what mcp.build is + list of available MCPs |
 | [`docs/send-email/index.html`](./docs/send-email/index.html) | Dedicated page per MCP (usage, "Add to Claude", etc.) — template for new MCPs |
+| [`docs/run-python/index.html`](./docs/run-python/index.html) | run-python MCP page |
 | [`docs/css/styles.css`](./docs/css/styles.css) | Styles |
 | [`docs/agents.json`](./docs/agents.json) | Machine-readable agent catalog |
 | [`docs/llms.txt`](./docs/llms.txt) | Short instructions for LLMs / agents |
